@@ -1,0 +1,71 @@
+{
+    "name": "@social-native/snpkg-knex-migration-generator",
+    "version": "0.25.8",
+    "description": "",
+    "main": "dist/index.cjs.js",
+    "module": "dist/index.es.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "nodemon -e ts -w ./src -x npm run ts-node-start",
+        "ts-node-start": "node ./node_modules/.bin/ts-node --project tsconfig.json src/index.ts",
+        "clean": "rimraf coverage dist tmp",
+        "build": "npm run clean && rollup -c",
+        "watch": "rollup -cw",
+        "prettier": "./node_modules/.bin/prettier \"src/**/*\" --write",
+        "lint": "tslint -t stylish --project \"tsconfig.json\"",
+        "test": "jest --passWithNoTests",
+        "test:watch": "npm run test -- --watchAll --runInBand",
+        "type-check:watch": "npm run type-check -- --watch",
+        "type-check": "tsc --noEmit",
+        "dep-check": "snpkg-dependency-check",
+        "package-version-validation": "snpkg-package-version-validation package-version-validation",
+        "tag-version-validation": "snpkg-package-version-validation tag-version-validation",
+        "postinstall": "snpkg-generate-config-ci snpkg"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/social-native/snpkg-knex-migration-generator.git"
+    },
+    "author": "Ethan Hathaway",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/social-native/snpkg-knex-migration-generator/issues"
+    },
+    "homepage": "https://github.com/social-native/snpkg-knex-migration-generator#readme",
+    "dependencies": {
+        "@social-native/snpkg-generate-config-ci": "^0.2.0",
+        "bluebird": "^3.7.1",
+        "chalk": "^2.4.2",
+        "lodash.difference": "^4.5.0",
+        "lodash.get": "^4.4.2",
+        "luxon": "^1.17.2",
+        "pino": "^5.12.6"
+    },
+    "devDependencies": {
+        "@social-native/snpkg-dependency-check": "^0.1.0",
+        "@social-native/snpkg-package-version-validation": "^3.1.0",
+        "@types/bluebird": "^3.5.28",
+        "@types/jest": "^24.0.13",
+        "@types/lodash.difference": "^4.5.6",
+        "@types/lodash.get": "^4.4.6",
+        "@types/luxon": "^1.15.2",
+        "@types/pino": "^5.8.8",
+        "jest": "^24.5.0",
+        "nodemon": "^1.18.10",
+        "prettier": "^1.16.4",
+        "rimraf": "^2.6.3",
+        "rollup": "^1.2.2",
+        "rollup-plugin-typescript2": "^0.21.1",
+        "ts-jest": "^24.0.0",
+        "ts-node": "^8.0.3",
+        "tsconfig-paths": "^3.8.0",
+        "tslint": "^5.14.0",
+        "tslint-config-prettier": "^1.18.0",
+        "tslint-eslint-rules": "^5.4.0",
+        "tslint-immutable": "^5.5.2",
+        "typescript": "^3.4.1"
+    }
+}
