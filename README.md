@@ -78,25 +78,25 @@ Example:
 return (extension: MigrationFileExtension = 'js') => `
     ${importStatements(extension)}
     ${upMigrationDeclaration(extension)}
-    await knex.schema.createTable('${table_names.event_implementor_type}', t => {
-        t.increments('${event_implementor_type.id}')
+    await knex.schema.createTable('event_implementor_type', t => {
+        t.increments('id')
             .unsigned()
             .primary();
-        t.string('${event_implementor_type.type}').notNullable();
+        t.string('type').notNullable();
     });
 
-    return await knex.table('${table_names.event_implementor_type}').insert([
+    return await knex.table('event_implementor_type').insert([
         {
-            type: '${EVENT_IMPLEMENTOR_TYPE_NAMES.NODE_CHANGE}',
-            id: '${EVENT_IMPLEMENTOR_TYPE_IDS.NODE_CHANGE}'
+            type: 'NODE_CHANGE',
+            id: 1
         },
         {
-            type: '${EVENT_IMPLEMENTOR_TYPE_NAMES.NODE_FRAGMENT_CHANGE}',
-            id: '${EVENT_IMPLEMENTOR_TYPE_IDS.NODE_FRAGMENT_CHANGE}'
+            type: 'NODE_FRAGMENT_CHANGE',
+            id: 2
         },
         {
-            type: '${EVENT_IMPLEMENTOR_TYPE_NAMES.LINK_CHANGE}',
-            id: '${EVENT_IMPLEMENTOR_TYPE_IDS.LINK_CHANGE}'
+            type: 'LINK_CHANGE',
+            id: 3
         }
     ]);
 }`
