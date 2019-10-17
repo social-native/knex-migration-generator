@@ -65,3 +65,5 @@ tmp
 dist
 
 .rpt2_cache/
+
+.vscode

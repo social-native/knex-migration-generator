@@ -63,7 +63,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
     // wants to pass additional information into the migration template
     const _migrationFnExtractor = migrationFnExtractor || defaultMigrationFnExtractor;
 
-    await Bluebird.mapSeries(newMigrations, async ({migrationName, fileName}) => {
+    await Bluebird.map(newMigrations, async ({migrationName, fileName}) => {
         // create a migration file for each new migration
         const newMigrationFileNamePath = await knex.migrate.make(`${libraryName}_${migrationName}`);
 
