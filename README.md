@@ -24,15 +24,9 @@ This library should be used in a `bin` file that your package publishes. For exa
 
 
 import {generator} from '@social-native/snpkg-knex-migration-generator';
+import yargs from 'yargs';
 
-
-yargs.command({
-    command: 'add-version-tables',
-    describe: 'Adds db migrations for version tables',
-    handler: async args => {
-        await generator(args, './src/migrations', 'graphql_node_version', fn => fn(customTableAndColumnNames));
-    }
-});
+generator(yargs.argv, './src/migrations', 'graphql_node_version', fn => fn(customTableAndColumnNames));
 ```
 
 ### 2. Generator
@@ -41,7 +35,7 @@ To use, import the generator function. Pass it `command line args`, `relative pa
 
 ```typescript
 import {generator} from '@social-native/snpkg-knex-migration-generator';
-await generator(args, './src/migrations', 'graphql_node_version', fn => fn(customTableAndColumnNames));
+generator(args, './src/migrations', 'graphql_node_version', fn => fn(customTableAndColumnNames));
 ```
 
 Note:
