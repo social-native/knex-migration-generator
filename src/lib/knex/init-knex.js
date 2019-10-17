@@ -5,8 +5,11 @@ const tildify = require('tildify');
 const color = require('colorette');
 const argv = require('getopts')(process.argv.slice(2));
 
-const {mkConfigObj, resolveKnexFilePath} = require('./cli-config-utils');
-const {DEFAULT_EXT} = require('./constants');
+import {mkConfigObj, resolveKnexFilePath} from './cli-config-utils';
+
+// const {mkConfigObj, resolveKnexFilePath} = require('./cli-config-utils');
+// const {DEFAULT_EXT} = require('./constants');
+import {DEFAULT_EXT} from './constants';
 
 function exit(text) {
     if (text instanceof Error) {
@@ -102,8 +105,9 @@ function resolveEnvironmentConfig(opts, allConfigs) {
     return result;
 }
 
-module.exports = {
-    initKnex
-};
+// module.exports = {
+//     initKnex
+// };
+export default initKnex;
 
 // tslint:enable

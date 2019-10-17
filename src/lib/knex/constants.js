@@ -1,6 +1,6 @@
 // tslint:disable
 
-const { keys } = require('lodash');
+const {keys} = require('lodash');
 
 /**
  * ********************************************************************
@@ -19,41 +19,36 @@ const DEFAULT_TABLE_NAME = 'knex_migrations_version';
 
 // The client names we'll allow in the `{name: lib}` pairing.
 const CLIENT_ALIASES = Object.freeze({
-  pg: 'postgres',
-  postgresql: 'postgres',
-  sqlite: 'sqlite3',
+    pg: 'postgres',
+    postgresql: 'postgres',
+    sqlite: 'sqlite3'
 });
 
 const SUPPORTED_CLIENTS = Object.freeze(
-  [
-    'mssql',
-    'mysql',
-    'mysql2',
-    'oracledb',
-    'postgres',
-    'redshift',
-    'sqlite3',
-  ].concat(keys(CLIENT_ALIASES))
+    ['mssql', 'mysql', 'mysql2', 'oracledb', 'postgres', 'redshift', 'sqlite3'].concat(
+        keys(CLIENT_ALIASES)
+    )
 );
 
 const POOL_CONFIG_OPTIONS = Object.freeze([
-  'maxWaitingClients',
-  'testOnBorrow',
-  'fifo',
-  'priorityRange',
-  'autostart',
-  'evictionRunIntervalMillis',
-  'numTestsPerRun',
-  'softIdleTimeoutMillis',
-  'Promise',
+    'maxWaitingClients',
+    'testOnBorrow',
+    'fifo',
+    'priorityRange',
+    'autostart',
+    'evictionRunIntervalMillis',
+    'numTestsPerRun',
+    'softIdleTimeoutMillis',
+    'Promise'
 ]);
 
-module.exports = {
-  CLIENT_ALIASES,
-  SUPPORTED_CLIENTS,
-  POOL_CONFIG_OPTIONS,
-  DEFAULT_EXT,
-  DEFAULT_TABLE_NAME,
-};
+// module.exports = {
+//   CLIENT_ALIASES,
+//   SUPPORTED_CLIENTS,
+//   POOL_CONFIG_OPTIONS,
+//   DEFAULT_EXT,
+//   DEFAULT_TABLE_NAME,
+// };
+export {CLIENT_ALIASES, SUPPORTED_CLIENTS, POOL_CONFIG_OPTIONS, DEFAULT_EXT, DEFAULT_TABLE_NAME};
 
 // tslint:enable

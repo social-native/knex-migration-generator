@@ -2,10 +2,14 @@ import Bluebird from 'bluebird';
 import fs from 'fs';
 import path from 'path';
 
-import * as _kenxBin from './lib/knex/init-knex'; // tslint:disable-line
+// import * as _kenxBin from './lib/knex/init-knex'; // tslint:disable-line
+// const kenxBin = require('lib/knex/init-knex'); // tslint:disable-line
+import kenxBin from 'lib/knex/init-knex'; // tslint:disable-line
+
 import {MigrationGenerator, IArgs} from './types';
 
-const kenxBin = (_kenxBin as any).default || _kenxBin;
+// console.log(kenxBin)
+// const kenxBin = (_kenxBin as any).default || _kenxBin;
 
 const defaultMigrationFnExtractor = <Fn extends (...params: any[]) => any>(
     migrationFn: Fn
