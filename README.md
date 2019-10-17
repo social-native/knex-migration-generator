@@ -25,17 +25,23 @@ This library should be used in a `bin` file that your package publishes. For exa
 
 import {generator} from '@social-native/snpkg-knex-migration-generator';
 import yargs from 'yargs';
+import path from 'path';
 
-generator(yargs.argv, './src/migrations', 'graphql_node_version', fn => fn(customTableAndColumnNames));
+const p = path.resolve(__dirname, './migrations');
+generator(yargs.argv, p, 'graphql_node_version', fn => fn(customTableAndColumnNames));
 ```
 
 ### 2. Generator
 
-To use, import the generator function. Pass it `command line args`, `relative path of migrations` and the `library name`. Optionally, you may pass it a function to create a closure scope around the generator function. This is a convient way to pass in additional information into the generator templates.
+To use, import the generator function. Pass it `command line args`, `absolute path of migrations` and the `library name`. Optionally, you may pass it a function to create a closure scope around the generator function. This is a convient way to pass in additional information into the generator templates.
 
 ```typescript
 import {generator} from '@social-native/snpkg-knex-migration-generator';
-generator(args, './src/migrations', 'graphql_node_version', fn => fn(customTableAndColumnNames));
+
+import path from 'path';
+
+const p = path.resolve(__dirname, './migrations');
+generator(args, p, 'graphql_node_version', fn => fn(customTableAndColumnNames));
 ```
 
 Note:

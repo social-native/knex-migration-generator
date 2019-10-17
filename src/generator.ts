@@ -12,7 +12,7 @@ const defaultMigrationFnExtractor = <Fn extends (...params: any[]) => any>(
 
 export default async <Fn extends (...params: any[]) => MigrationGenerator>(
     args: IArgs,
-    relativePathOfLibMigrations: string,
+    absPathOfLibMigrations: string,
     libraryName: string,
     migrationFnExtractor?: Fn
 ) => {
@@ -37,7 +37,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
     const existingMigrations = fs.readdirSync(knex.migrate.config.directory);
 
     // set path of the libraries migration directory
-    const libMigrationDir = path.resolve(relativePathOfLibMigrations);
+    const libMigrationDir = path.resolve(absPathOfLibMigrations);
 
     // regex to match filename irrespective of extension
     const libMigrationFileName = /(.*).(ts|js)/;
