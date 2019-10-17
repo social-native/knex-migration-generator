@@ -29,7 +29,7 @@
         "type": "git",
         "url": "git+https://github.com/social-native/snpkg-knex-migration-generator.git"
     },
-    "author": "Ethan Hathaway",
+    "author": "",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/social-native/snpkg-knex-migration-generator/issues"
@@ -38,21 +38,13 @@
     "dependencies": {
         "@social-native/snpkg-generate-config-ci": "^0.2.0",
         "bluebird": "^3.7.1",
-        "chalk": "^2.4.2",
-        "lodash.difference": "^4.5.0",
-        "lodash.get": "^4.4.2",
-        "luxon": "^1.17.2",
-        "pino": "^5.12.6"
+        "chalk": "^2.4.2"
     },
     "devDependencies": {
         "@social-native/snpkg-dependency-check": "^0.1.0",
         "@social-native/snpkg-package-version-validation": "^3.1.0",
         "@types/bluebird": "^3.5.28",
         "@types/jest": "^24.0.13",
-        "@types/lodash.difference": "^4.5.6",
-        "@types/lodash.get": "^4.4.6",
-        "@types/luxon": "^1.15.2",
-        "@types/pino": "^5.8.8",
         "jest": "^24.5.0",
         "knex": "^0.19.5",
         "nodemon": "^1.18.10",
