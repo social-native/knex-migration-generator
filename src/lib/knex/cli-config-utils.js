@@ -1,9 +1,6 @@
 // tslint:disable
 
-// const {DEFAULT_EXT, DEFAULT_TABLE_NAME} = require('./constants');
 import {DEFAULT_EXT, DEFAULT_TABLE_NAME} from './constants';
-
-// const {resolveClientNameWithAliases} = require('./helpers');
 import {resolveClientNameWithAliases} from './helpers';
 
 const fs = require('fs');
@@ -64,11 +61,6 @@ function resolveKnexFilePath() {
 function resolveDefaultKnexfilePath(extension) {
     return process.cwd() + `/knexfile.${extension}`;
 }
-
-// module.exports = {
-//     mkConfigObj,
-//     resolveKnexFilePath
-// };
 
 export {mkConfigObj, resolveKnexFilePath};
 

@@ -7,8 +7,6 @@ const argv = require('getopts')(process.argv.slice(2));
 
 import {mkConfigObj, resolveKnexFilePath} from './cli-config-utils';
 
-// const {mkConfigObj, resolveKnexFilePath} = require('./cli-config-utils');
-// const {DEFAULT_EXT} = require('./constants');
 import {DEFAULT_EXT} from './constants';
 
 function exit(text) {
@@ -105,9 +103,6 @@ function resolveEnvironmentConfig(opts, allConfigs) {
     return result;
 }
 
-// module.exports = {
-//     initKnex
-// };
 export default initKnex;
 
 // tslint:enable

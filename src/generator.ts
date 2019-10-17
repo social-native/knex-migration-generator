@@ -2,14 +2,9 @@ import Bluebird from 'bluebird';
 import fs from 'fs';
 import path from 'path';
 
-// import * as _kenxBin from './lib/knex/init-knex'; // tslint:disable-line
-// const kenxBin = require('lib/knex/init-knex'); // tslint:disable-line
-import kenxBin from 'lib/knex/init-knex'; // tslint:disable-line
-
+import initKnex from './lib/knex/init-knex'; // tslint:disable-line
 import {MigrationGenerator, IArgs} from './types';
-
-// console.log(kenxBin)
-// const kenxBin = (_kenxBin as any).default || _kenxBin;
+import {templateFragments} from 'index';
 
 const defaultMigrationFnExtractor = <Fn extends (...params: any[]) => any>(
     migrationFn: Fn
@@ -36,7 +31,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
     opts.client = opts.client || 'sqlite3'; // We don't really care about client when creating migrations
 
     // instantiate knex client
-    const knex = (kenxBin as any).initKnex(Object.assign({}, env), opts);
+    const knex = initKnex(Object.assign({}, env), opts);
 
     // get names of existing migrations
     const existingMigrations = fs.readdirSync(knex.migrate.config.directory);
@@ -74,20 +69,27 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
 
         // import the lib migration file
         const libMigrationFilePath = path.resolve(libMigrationDir, fileName);
-        const migrationFile = require(libMigrationFilePath).default;
+        const migrationFile = _migrationFnExtractor(require(libMigrationFilePath).default);
 
-        const migrationText = _migrationFnExtractor(migrationFile)(
-            libraryName,
-            knex.migrate.config.extension
-        );
+        const migrationFileExtension = knex.migrate.config.extension;
+        if (migrationFileExtension !== 'js' && migrationFileExtension !== 'ts') {
+            throw new Error(
+                `Migration file extension calculated to be ${migrationFileExtension}. It must be either 'js' or 'ts'`
+            );
+        }
+        const migrationText = migrationFile(knex.migrate.config.extension);
+
+        console.log(`Writing migration to: ${newMigrationFileNamePath}`);
+        // add the header
+        fs.writeFileSync(newMigrationFileNamePath, templateFragments.warningHeader(libraryName));
 
         // write the lib migration contents to the new migration file
-        fs.writeFile(newMigrationFileNamePath, migrationText, err => {
+        fs.appendFile(newMigrationFileNamePath, migrationText, err => {
             if (err) {
                 throw err;
             }
 
-            console.log('Migration added: fileName');
+            console.log(`Migration added: ${fileName}`);
         });
     });
 };

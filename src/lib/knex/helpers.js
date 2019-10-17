@@ -8,8 +8,7 @@
 
 /* eslint no-console:0 */
 const {isFunction, isUndefined, isPlainObject, isArray, isTypedArray} = require('lodash');
-const {CLIENT_ALIASES} = require('./constants');
-
+import {CLIENT_ALIASES} from './constants';
 // Check if the first argument is an array, otherwise uses all arguments as an
 // array.
 
@@ -69,12 +68,6 @@ function resolveClientNameWithAliases(clientName) {
     return CLIENT_ALIASES[clientName] || clientName;
 }
 
-// module.exports = {
-//   addQueryContext,
-//   containsUndefined,
-//   normalizeArr,
-//   resolveClientNameWithAliases,
-// };
 export {addQueryContext, containsUndefined, normalizeArr, resolveClientNameWithAliases};
 
 // tslint:enable

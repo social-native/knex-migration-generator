@@ -42,13 +42,6 @@ const POOL_CONFIG_OPTIONS = Object.freeze([
     'Promise'
 ]);
 
-// module.exports = {
-//   CLIENT_ALIASES,
-//   SUPPORTED_CLIENTS,
-//   POOL_CONFIG_OPTIONS,
-//   DEFAULT_EXT,
-//   DEFAULT_TABLE_NAME,
-// };
 export {CLIENT_ALIASES, SUPPORTED_CLIENTS, POOL_CONFIG_OPTIONS, DEFAULT_EXT, DEFAULT_TABLE_NAME};
 
 // tslint:enable

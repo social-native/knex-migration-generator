@@ -1,5 +1,5 @@
 import * as templateFragments from './template_fragments';
-import * as generator from './generator';
+import generator from './generator';
 
 export * from './types';
 
