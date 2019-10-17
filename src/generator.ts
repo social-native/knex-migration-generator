@@ -79,7 +79,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
         }
         const migrationText = migrationFile(knex.migrate.config.extension);
 
-        console.log(`Writing migration to: ${newMigrationFileNamePath}`);
+        console.log(`Writing migration to: ${newMigrationFileNamePath}`); // tslint:disable-line
         // add the header
         fs.writeFileSync(newMigrationFileNamePath, templateFragments.warningHeader(libraryName));
 
@@ -89,7 +89,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
                 throw err;
             }
 
-            console.log(`Migration added: ${fileName}`);
+            console.log(`Migration added: ${fileName}`); // tslint:disable-line
         });
     });
 };
