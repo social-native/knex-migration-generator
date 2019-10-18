@@ -22,13 +22,7 @@ This library should be used in a `bin` file that your package publishes. For exa
 #! /usr/bin/env node
 # src/bin.ts
 
-
-import {generator} from '@social-native/snpkg-knex-migration-generator';
-import yargs from 'yargs';
-import path from 'path';
-
-const p = path.resolve(__dirname, './migrations');
-generator(yargs.argv, p, 'graphql_node_version', fn => fn(customTableAndColumnNames));
+generator(...args);
 ```
 
 ### 2. Generator
