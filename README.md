@@ -84,6 +84,7 @@ For example:
 return (extension: MigrationFileExtension = 'js') => 
     ...knex migraiton code
 `;
+```
 
 C. In the generator template function you can include template fragments. For example, you may want to use ones for customizing the migration headers if you are unsure if the migrations will be used in a typescript or javascript repo.
 
