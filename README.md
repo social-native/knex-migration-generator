@@ -53,7 +53,9 @@ export interface IArgs {
 
 ### 3. Templates
 
-- A. Define you migrations as `generator templates`. Each template should be its own file in a migration folder. The migrations should be ordered. For example, you could have a folder structure like:
+#### 3A. Folder layout 
+
+Define you migrations as `generator templates`. Each template should be its own file in a migration folder. The migrations should be ordered. For example, you could have a folder structure like:
 
 ```
 src/
@@ -62,7 +64,9 @@ src/
     002_alter_version_table_add_column_hello.ts
 ```
 
-- B. Inside each migration file, you should return a `migration generator` function.
+#### 3B. Migration file
+
+Inside each migration file, you should return a `migration generator` function.
 
 The types for this function are:
 ```typescript
@@ -81,7 +85,9 @@ return (extension: MigrationFileExtension = 'js') =>
 `;
 ```
 
-- C. In the generator template function you can include template fragments. For example, you may want to use ones for customizing the migration headers if you are unsure if the migrations will be used in a typescript or javascript repo.
+#### 3C. Template fragments
+
+In the generator template function you can include template fragments. For example, you may want to use ones for customizing the migration headers if you are unsure if the migrations will be used in a typescript or javascript repo.
 
 Example:
 
