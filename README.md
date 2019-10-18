@@ -33,7 +33,7 @@ generator(yargs.argv, p, 'graphql_node_version', fn => fn(customTableAndColumnNa
 
 ### 2. Generator
 
-To use, import the generator function. Pass it `command line args`, `absolute path of migrations` and the `library name`. Optionally, you may pass it a function to create a closure scope around the generator function. This is a convient way to pass in additional information into the generator templates.
+To use, import the generator function. Pass it `command line args`, `absolute path of your libraries migrations folder` and the `library name`. Optionally, you may pass it a function to create a closure scope around the generator function - This is a convient way to pass in additional information into the generator templates.
 
 ```typescript
 import {generator} from '@social-native/snpkg-knex-migration-generator';
