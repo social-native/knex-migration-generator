@@ -33,7 +33,7 @@ To use, import the generator function. Pass it `command line args`, `absolute pa
 import {generator} from '@social-native/snpkg-knex-migration-generator';
 import yargs from 'yargs';
 import path from 'path';
-import {customTableAndColumnNames} from '../src/my_custom_config';
+import {customTableAndColumnNames} from '../dist/my_custom_config';
 
 const p = path.resolve(__dirname, './migrations');
 generator(yargs.argv, p, 'graphql_node_version', fn => fn(customTableAndColumnNames));
@@ -50,8 +50,14 @@ export interface IArgs {
 }
 ```
 
+It may be helpful to use the `yargs` lib to pass in valid `args`.
+
 
 ### 3. Templates
+
+The generator consumes templates defined in you libs migration folder and spits out valid knex migrations into the down stream consuming service's migration folder. 
+
+The steps to defining a template are:
 
 #### 3A. Folder layout 
 
