@@ -37,11 +37,12 @@ To use, import the generator function. Pass it `command line args`, `absolute pa
 
 ```typescript
 import {generator} from '@social-native/snpkg-knex-migration-generator';
+import yargs from 'yargs';
 import path from 'path';
 import {customTableAndColumnNames} from '../src/my_custom_config';
 
 const p = path.resolve(__dirname, './migrations');
-generator(args, p, 'graphql_node_version', fn => fn(customTableAndColumnNames));
+generator(yargs.argv, p, 'graphql_node_version', fn => fn(customTableAndColumnNames));
 ```
 
 Note:
