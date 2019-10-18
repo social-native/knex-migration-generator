@@ -67,7 +67,7 @@ src/
     002_alter_version_table_add_column_hello.ts
 ```
 
-B. Inside each you migration function you should return a `migration generator` function.
+B. Inside each migration file, you should return a `migration generator` function.
 
 The types for this function are:
 ```typescript
@@ -75,6 +75,15 @@ export type MigrationFileExtension = 'js' | 'ts';
 
 export type MigrationGenerator = (extension: MigrationFileExtension) => string;
 ```
+
+For example: 
+
+```typescript
+# ./migrations/001_add_initial_tables.ts
+
+return (extension: MigrationFileExtension = 'js') => 
+    ...knex migraiton code
+`;
 
 C. In the generator template function you can include template fragments. For example, you may want to use ones for customizing the migration headers if you are unsure if the migrations will be used in a typescript or javascript repo.
 
