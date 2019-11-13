@@ -1,6 +1,6 @@
 # snpkg-knex-migration-generator
 
-Allow your package to generate migrations that install in a downstream service 
+Allow your package to generate migrations that install in a downstream service
 
 ## Install
 
@@ -52,14 +52,13 @@ export interface IArgs {
 
 It may be helpful to use the `yargs` lib to pass in valid `args`.
 
-
 ### 3. Templates
 
-The generator consumes templates defined in you libs migration folder and spits out valid knex migrations into the down stream consuming service's migration folder. 
+The generator consumes templates defined in you libs migration folder and spits out valid knex migrations into the down stream consuming service's migration folder.
 
 The steps to defining a template are:
 
-#### 3A. Folder layout 
+#### 3A. Folder layout
 
 Define you migrations as `generator templates`. Each template should be its own file in a migration folder. The migrations should be ordered. For example, you could have a folder structure like:
 
@@ -75,18 +74,19 @@ src/
 Inside each migration file, you should return a `migration generator` function.
 
 The types for this function are:
+
 ```typescript
 export type MigrationFileExtension = 'js' | 'ts';
 
 export type MigrationGenerator = (extension: MigrationFileExtension) => string;
 ```
 
-For example: 
+For example:
 
 ```typescript
 # ./migrations/001_add_initial_tables.ts
 
-return (extension: MigrationFileExtension = 'js') => 
+return (extension: MigrationFileExtension = 'js') =>
     ...knex migraiton code
 `;
 ```
@@ -122,5 +122,40 @@ return (extension: MigrationFileExtension = 'js') => `
             id: 3
         }
     ]);
-}`
+}`;
+```
+
+#### 4. Publishing packages with templates
+
+The package that consumes the migration generator should publish the migration files. For example, if your source directory is `src` and your distribution directory is `dist`, you would want a way to move the `src/migrations/` template files to `dist/migrations/`. And, if the templates are written in `typescript`, you would want a way to transpile them to good old `JS`.
+
+Doing this publishing step with a build tool like Rollup would look like:
+
+```typescript
+{
+    input: ['src/migrations/**/*.ts'],
+    output: [
+        {
+            dir: 'dist',
+            format: 'cjs'
+        }
+    ],
+    plugins: [multiInput(), ...commonPlugins],
+    ...common
+}
+```
+
+> The generator is designed to ignore any `.d.ts` files it finds. So if another rollup step adds `dist/migrations/*.d.ts` files you don't need to do anything.
+
+The `bin.ts` file that would work with the above published templates might look something like:
+
+```typescript
+#! /usr/bin/env node
+
+import yargs from 'yargs';
+import {generator} from '@social-native/snpkg-knex-migration-generator';
+import path from 'path';
+
+const p = path.resolve(__dirname, './migrations'); <--------- the path relative to the `bin` file
+generator(yargs.argv, p, 'graphql_node_version', fn => fn());
 ```

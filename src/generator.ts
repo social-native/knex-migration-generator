@@ -40,7 +40,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
     const libMigrationDir = path.resolve(absPathOfLibMigrations);
 
     // regex to match filename irrespective of extension
-    const libMigrationFileName = /(.*).(ts|js)/;
+    const libMigrationFileName = /(.*).[^\.d].(ts|js)/;
     const libMigrationFiles = fs.readdirSync(libMigrationDir);
 
     // figure out which lib migrations haven't been added yet
@@ -69,7 +69,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
 
         // import the lib migration file
         const libMigrationFilePath = path.resolve(libMigrationDir, fileName);
-        const migrationFile = _migrationFnExtractor(require(libMigrationFilePath).default);
+        const migrationFile = _migrationFnExtractor(require(libMigrationFilePath));
 
         const migrationFileExtension = knex.migrate.config.extension;
         if (migrationFileExtension !== 'js' && migrationFileExtension !== 'ts') {
@@ -77,6 +77,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
                 `Migration file extension calculated to be ${migrationFileExtension}. It must be either 'js' or 'ts'`
             );
         }
+
         const migrationText = migrationFile(knex.migrate.config.extension);
 
         console.log(`Writing migration to: ${newMigrationFileNamePath}`); // tslint:disable-line
