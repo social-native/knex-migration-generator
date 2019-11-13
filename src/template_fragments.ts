@@ -11,7 +11,7 @@ export const warningHeader = (libName: string) => `
 `;
 
 export const importStatements = (extension: MigrationFileExtension) =>
-    extension === 'ts' ? "import * as Knex from 'knex'" : '';
+    extension === 'ts' ? "import * as Knex from 'knex';" : '';
 
 export const upMigrationDeclaration = (extension: MigrationFileExtension) =>
     extension === 'js'
