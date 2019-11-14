@@ -40,7 +40,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
     const libMigrationDir = path.resolve(absPathOfLibMigrations);
 
     // regex to match filename irrespective of extension
-    const libMigrationFileName = /(.*).[^\.d].(ts|js)/;
+    const libMigrationFileName = /(.*)[^d].(ts|js)/;
     const libMigrationFiles = fs.readdirSync(libMigrationDir);
 
     // figure out which lib migrations haven't been added yet
@@ -48,6 +48,7 @@ export default async <Fn extends (...params: any[]) => MigrationGenerator>(
     libMigrationFiles.forEach(fileName => {
         const match = fileName.match(libMigrationFileName);
         const potentialMigrationName = match && match[1];
+
         if (potentialMigrationName) {
             const matchingMigration = existingMigrations.find(m =>
                 m.includes(potentialMigrationName)
