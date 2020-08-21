@@ -1,11 +1,11 @@
-# snpkg-knex-migration-generator
+# knex-migration-generator
 
-Allow your package to generate migrations that install in a downstream service
+Give your package the ability to generate Knex SQL migrations that install in a downstream service
 
 ## Install
 
 ```
-npm install --save @social-native/snpkg-knex-migration-generator
+npm install --save knex-migration-generator
 ```
 
 ## About
@@ -30,7 +30,7 @@ generator(...args);
 To use, import the generator function. Pass it `command line args`, `absolute path of your libraries migrations folder` and the `library name`. Optionally, you may pass it a function to create a closure scope around the generator function - This is a convient way to pass in additional information into the generator templates.
 
 ```typescript
-import {generator} from '@social-native/snpkg-knex-migration-generator';
+import {generator} from 'knex-migration-generator';
 import yargs from 'yargs';
 import path from 'path';
 import {customTableAndColumnNames} from '../dist/my_custom_config';
@@ -153,7 +153,7 @@ The `bin.ts` file that would work with the above published templates might look 
 #! /usr/bin/env node
 
 import yargs from 'yargs';
-import {generator} from '@social-native/snpkg-knex-migration-generator';
+import {generator} from 'knex-migration-generator';
 import path from 'path';
 
 const p = path.resolve(__dirname, './migrations'); <--------- the path relative to the `bin` file
