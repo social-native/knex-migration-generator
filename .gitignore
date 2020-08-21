@@ -67,3 +67,5 @@ dist
 .rpt2_cache/
 
 .vscode
+
+.DS_Store
